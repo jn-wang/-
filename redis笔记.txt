@@ -1,0 +1,58 @@
+redis
+		redis是一个软件，帮助开发者对一台机器的内存进行操作。
+		默认端口 3679
+		进入redis.conf中可以修改
+	配置文件
+		bind 0.0.0.0
+		port 6379
+		reqirepass 密码
+		
+	关键字
+		缓存，优先在redis中获取，如果没有就在数据库中获取
+	
+	
+	安装
+		yum install redis
+		redis-server /etc/redis.conf
+	
+	python链接redis的模块
+		
+	pip install redis
+	创建链接
+		import redis
+		
+		conn = redis.Redis(host='118.24.21.110',port=6379,password='asdf1234')
+		
+		conn.set('x1','www.jn-wang.cn',ex=500)
+		val = conn.get('x1')
+		print(val)
+		
+	连接池链接
+		import redis
+		
+		pool = redis.ConnectionPool(host='118.24.21.110',port=6379,password='asdf1234',max_connections=1000)
+		r = redis.Redis(connection_pool=pool)
+		
+		conn.set()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

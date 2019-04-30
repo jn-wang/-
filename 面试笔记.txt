@@ -1,0 +1,172 @@
+RESTful使用规范
+一.协议
+
+????使用https协议
+
+二.域名
+
+????可以放在主域名下面（使用/来表示资源的层级关系）
+
+http://platform.wesufu.top/api/
+三.版本
+
+? ? 将api的版本号放入URL中
+
+http://platform.wesufu.top/platform/api/v2/
+四.路径
+
+? ? 路径表示API的具体网址，也就是具体的资源
+
+http://platform.wesufu.top/platform/api/v2/shop/page
+五.过滤信息
+
+? ??使用?用来过滤资源
+
+http://platform.wesufu.top/platform/api/v2/shop/page/query?page=4&per_page=10
+
+六.HTTP操作类型
+
+GET（SELECT）：从服务器取出资源（一项或多项）。
+POST（CREATE）：在服务器新建一个资源。
+PUT（UPDATE）：在服务器更新资源（客户端提供改变后的完整资源）。
+PATCH（UPDATE）：在服务器更新资源（客户端提供改变的属性）。
+DELETE（DELETE）：从服务器删除资源。
+? ? 不常用的两个：
+
+HEAD：获取资源的元数据。
+OPTIONS：获取信息，关于资源的哪些属性是客户端可以改变的。
+七.http请求后的状态码
+八.渲染器
+九.条件
+十.返回值
+
+DJANGO rest framework框架的作用（10）
+路由--视图--版本--认证--权限--访问评率控制--解析器--验证序列化--分页--渲染
+
+
+为什么会出现跨域？
+浏览器的同源策略造成的  会阻止ajax请求，但是不阻止src属性的标签
+	
+如何染过同源策略？
+前端
+       --jsonp
+	动态创建script标签，进行传送数据
+	<script src='xxxx'></script>
+       --cors
+	设置响应头，不让阻止ajax请求
+
+
+全栈内容
+
+	1.示例
+		推荐课程
+		用户登录
+		拦截器
+
+	VUE:
+		课程列表:this.$axios +this
+		课程详情:this.$axios +this
+		用户登录：
+			this.$axios
+			跨域简单和复杂请求
+			vuex做了全局的变量
+			然后将?保存在vue-cookies
+		微职位
+			拦截器
+			携带token
+			api同意放入store
+	API
+		课程列表
+		
+
+
+ http协议
+ 
+	超文本传输协议，TCP/IP通信协议来传递数据
+	HTTP协议工作于客户端-服务端架构为上。
+	HTTP是一个属于应用层的面向对象的协议，
+	本质上是一个传输数据格式
+
+	我原来学django框架都是从socket服务器开始学习
+	自己创造一个socket服务器，浏览器当socket客户端
+	要了解到它的请求头与响应头
+
+	常见的请求头
+	
+
+	常见的请求体
+	Form表单提交：
+	POST/index http1.1\r\nhost:www.jn-wang.cn....\r\n\r\nusername=???&password=1234&....
+	Ajax请求
+	POST/index http1.1\r\nhost:www.jn-wang.cn....\r\n\r\nusername=???&password=1234&....
+	字符串
+	字典
+	POST/index http1.1\r\nhost:www.jn-wang.cn....\r\n\r\n{
+'username'='???','password'='1234',....}
+	django中获取请求头 
+	-request.POST  只能获取字符串
+	-request.body  都能获取
+
+4.django请求生命周期
+	
+	wsgi（socket服务端，接收用户请求将请求初次封装成environ参数，交给django框架，封装成request对象）-> 
+	中间件 帮助我们对请求进行校验，或者在请求对象里添加其他数据（csrf，request,session）
+	url匹配视图函数中进行业务逻辑处理，可能涉及到，orm，templates 进行渲染
+	-中间件  对响应的数据进行处理。
+	-wsgi 将响应的内容发送给浏览器
+	
+
+5，中间件
+ 	-5个方法
+	       1、process_request : 请求进来时,权限认证 。
+
+   	       2、process_view : 路由匹配之后,能够得到视图函数
+
+	       3、process_exception : 异常时执行
+ 
+  	       4、process_template_responseprocess : 模板渲染时执行
+
+  	       5、process_response : 请求有响应时执行
+
+	-应用场景
+	       -登陆验证
+	       -权限 当用户登陆时获取当前用户所以权限放入session，然后再次访问其他页面，获取当前url并在session进行匹配，如果没有就返回验证
+	       -跨域 
+		-jsonp 动态创建一个script标签
+		-core 设置响应头，只在开发的前后端分离的时候用过
+
+
+
+	6.orm操作
+		class User:
+			name = ...
+			dp = FK(depart)
+		class depart:
+		title = ...
+
+		做连表查询，取出所有用户的name和title
+
+		Select *from user left join depart on user.dp_id = depart.id
+
+		Result = models.User.objects.all().selected_related(‘dp’)/主动做连表查询
+		For row in result:
+		Print(row.name,row.dp.title)
+		
+		select * from user;
+		获取dp_id = [1,2]
+		select * from depart where id = dp_id
+		result = models.User.objects.all().prefetch_related(‘dp’)/主动做连表查询
+		For row in result:
+		Print(row.name,row.dp.title)
+
+		需求只取一个数据库的特定的值
+		Resilt = models.User,objects.all().defer(‘id’,’name’,’age’)
+		Resilt = {obj，obj}
+
+		Resilt = models.User,objects.all().values_list(‘id’,’name’,’age’)
+		Resilt = {()，()}
+
+		Resilt = models.User,objects.all().values(‘id’,’name’,’age’)
+		Resilt = {{}，{}}
+
+

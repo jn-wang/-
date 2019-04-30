@@ -1,0 +1,89 @@
+
+git是一个帮助用户实现版本控制的软件
+
+	git init 管理这个文件夹 初始化
+	git status 查看当前文件夹的文件状态
+	git add 文件名   对指定文件进行版本控制
+	git add .  管理当前文件夹所有文件进行版本控制
+	git commit -m '详细的版本描述信息'
+	
+	git log  log记录
+	git reflog  详细log记录
+	git reset --hard 提交记录id   自动回滚
+	git check out 文件名   回复这个文件上个版本
+	
+	git stash  暂存已经开发的一部分代码，回头再继续开发
+	git stash list   查看暂存的所有记录
+	git stash clear 清空暂存
+	git stash pop 将第一个记录重新拿到工作区
+	git stash apply 编号 将制定编号重新拿回工作区
+	git stash drop 编号 删除指定编号的记录
+	
+	
+	git brance 查看有哪些分支
+	git branch dev  创建dev分支
+	git branch bug
+	git branch -d bug 删除bug分支
+	git checkout dev 跳到dev分支
+	git merge bug  合并分支
+	
+	面试题：如果代码出现bug 如何解决？
+		创建一个bug分支，然后进行bug处理  处理完毕 合并到master分支
+		删除bug分支
+		
+	
+	
+	git remote add origin 
+	
+	git push origin dev   上传代码
+	
+	git clone https://....
+	
+	git pull origin dev   拉代码
+		git fetch origin dev
+		git merge origin/dev  一般使用  git rebase origin/dev
+		
+	
+	面试题：
+			
+	git rebase的作用？
+	保持git提交记录的整洁
+	如果在下班途中写好的代码没有上传，回家又写了部分
+	在家里上传了
+	就使用
+	
+	git push origin dev  在家上传代码
+	
+	git fetch origin dev  到公司后将家里的代码fetch传到分支上
+	git rebase origin/dev  合并昨天写好的代码，就不会出现git分叉，保持git提交整洁
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
